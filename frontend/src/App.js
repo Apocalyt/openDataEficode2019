@@ -17,7 +17,7 @@ class App extends React.Component {
         <div className="Data">
           <h1>Data</h1>
           {this.state.data.map(data =>
-            <div key="text"> {data.sensor1} - {data.sensor2} - {data.sensor3} - {data.sensor4}</div>
+            <div key="text"> {data.sensor_name} - {data.value} - {data.value_ts}</div>
           )}
         </div>
     );

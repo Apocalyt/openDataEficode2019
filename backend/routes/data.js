@@ -1,12 +1,30 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
+const { Pool, Client } = require('pg');
 
-var bodies = [];
+if (process.env.NODE_ENV === "production") {
+  var clientParams = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  };
+} else {
+  var clientParams = {
+    connectionString: process.env.DATABASE_URL
+  };
+}
+const client = new Client(clientParams);
 
-/* GET users listing. */
+const query = "SELECT * FROM data;"
+
+client.connect();
+
+/* GET data listing. */
 router.get('/', function(req, res, next) {
-    res.json("placeholde");
+    client.query(query, (error, response) => {
+    console.log(error ? error.stack : response.rows);         
+    res.json(response.rows);
+  });
 });
 
 module.exports = router;
