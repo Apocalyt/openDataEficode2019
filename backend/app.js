@@ -41,4 +41,10 @@ app.use(function(err, req, res, next) {
 var http = require('http');
 module.exports = app;
 var server = http.createServer(app);
-server.listen(4000);
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 4000;
+}
+
+server.listen(port);
