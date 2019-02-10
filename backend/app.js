@@ -29,6 +29,11 @@ const requestOptions = {
   }
 }
 
+setInterval(function() {
+    request("https://eficode2019-open-data.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
+
+
 // Write eficode open data to database 
 var j = schedule.scheduleJob('1 * * * *', function(){
    request(requestOptions, function(error, response, body) {
