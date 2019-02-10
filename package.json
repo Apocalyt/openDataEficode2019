@@ -4,5 +4,8 @@
   "scripts": {
     "postinstall": "npm install --prefix backend && npm install --prefix frontend",
     "heroku-postbuild": "npm run --prefix frontend build"
+  },
+  "engines": {
+    "node": "11.9"
   }
 }
