@@ -6,52 +6,69 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datas: {
+      data1: {
         name: "Data",
         columns: ["time", "sensor_name", "value", "id"],
         points: []
       },
-      series1: new TimeSeries(),
-      series2: new TimeSeries(),
-      series3: new TimeSeries(),
-      series4: new TimeSeries()
+      data2: {
+        name: "Data",
+        columns: ["time", "sensor_name", "value", "id"],
+        points: []
+      },
+      data3: {
+        name: "Data",
+        columns: ["time", "sensor_name", "value", "id"],
+        points: []
+      },
+      data4: {
+        name: "Data",
+        columns: ["time", "sensor_name", "value", "id"],
+        points: []
+      }
     };
   }
   componentDidMount() {
     fetch('/data')
       .then(res => res.json())
       .then(data => this.setState({ 
-        datas: { 
-          name: "Data",
+	data1: { 
+          name: "sensor1",
           columns: ["time", "sensor_name", "value", "id"],
-          points: data
+          points: data.filter(obj => obj.sensor_name === "sensor1").map(obj => [obj.time, obj.sensor_name, obj.value, obj.id])
         },
+	data2: { 
+          name: "sensor2",
+          columns: ["time", "sensor_name", "value", "id"],
+          points: data.filter(obj => obj.sensor_name === "sensor2").map(obj => [obj.time, obj.sensor_name, obj.value, obj.id])
+        },
+	data3: { 
+          name: "sensor3",
+          columns: ["time", "sensor_name", "value", "id"],
+          points: data.filter(obj => obj.sensor_name === "sensor3").map(obj => [obj.time, obj.sensor_name, obj.value, obj.id])
+        },
+	data4: { 
+          name: "sensor4",
+          columns: ["time", "sensor_name", "value", "id"],
+          points: data.filter(obj => obj.sensor_name === "sensor4").map(obj => [obj.time, obj.sensor_name, obj.value, obj.id])
+        }
       }));
   }
   render() {
     return (
-      <div>
-        <div className="Data">
-          <h1>Data</h1>
-          {this.state.datas.points.map(obj =>
-            <div key="data.id"> {obj.sensor_name} - {obj.value} - {obj.value_ts}</div>
-          )}
-        </div>
-	    
-{/*	<div>
-          <ChartContainer timeRange={series1.timerange()} width={800}>
-            <ChartRow height="200">
-              <YAxis id="axis1" label="AUD" min={0.5} max={1.5} width="60" type="linear" format="$,.2f"/>
+	<div>
+          <ChartContainer timeRange={new TimeRange([1549825200,1550100000])} width={"1200"}>
+            <ChartRow height="800">
+              <YAxis id="axis1" label="Y" min={-40} max={400} width="60" type="linear" format="$,.2f"/>
                 <Charts>
-                  <LineChart axis="axis1" series={series1}/>
-                  <LineChart axis="axis2" series={series2}/>
+                  <LineChart axis="axis1" series={new TimeSeries(this.state.data1)}/>
+                  <LineChart axis="axis1" series={new TimeSeries(this.state.data2)}/>
+                  <LineChart axis="axis1" series={new TimeSeries(this.state.data3)}/>
+                  <LineChart axis="axis1" series={new TimeSeries(this.state.data4)}/>
                 </Charts>
-              <YAxis id="axis2" label="Euro" min={0.5} max={1.5} width="80" type="linear" format="$,.2f"/>
             </ChartRow>
           </ChartContainer>
 	</div>
-*/}
-      </div>
     );
   }
 }
