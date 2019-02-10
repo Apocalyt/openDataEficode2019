@@ -1,8 +1,22 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+client.connect();
+
+client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
+  console.log(err ? err.stack : res.rows[0].message) // Hello World!
+  client.end()
+})
 
 //var indexRouter = require('./routes/index');
 var dataRouter = require('./routes/data');
