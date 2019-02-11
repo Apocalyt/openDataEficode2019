@@ -85,7 +85,7 @@ class App extends React.Component {
       <div className="col-md-12">
         <Resizable>
           <ChartContainer 
-            utc={this.state.mode === "utc"}
+            utc={this.state.mode === "local"}
             timeRange={new TimeRange([this.state.startDate, this.state.endDate])}
             showGrid={true}
             showGridPosition="over"
