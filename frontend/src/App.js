@@ -104,10 +104,12 @@ class App extends React.Component {
       const trackerEvent2 = this.state.data2.at(index);
       const trackerEvent3 = this.state.data3.at(index);
       const trackerEvent4 = this.state.data4.at(index);
-      value1 = `${f(trackerEvent1.get("value"))}`;
-      value2 = `${f(trackerEvent2.get("value"))}`;
-      value3 = `${f(trackerEvent3.get("value"))}`;
-      value4 = `${f(trackerEvent4.get("value"))}`;
+      if(trackerEvent1 && trackerEvent2 && trackerEvent3 && trackerEvent4) {
+        value1 = `${f(trackerEvent1.get("value"))}`;
+        value2 = `${f(trackerEvent2.get("value"))}`;
+        value3 = `${f(trackerEvent3.get("value"))}`;
+        value4 = `${f(trackerEvent4.get("value"))}`;
+      }
     }
     return (
   <div>
