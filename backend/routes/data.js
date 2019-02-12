@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 }
 const client = new Client(clientParams);
 
-const query = "SELECT extract(epoch from value_ts) as time, sensor_name, value, id FROM data;"
+const query = "SELECT extract(epoch from value_ts) as time, sensor_name, value, id FROM data ORDER BY sensor_name ASC, value_ts ASC;"
 
 client.connect();
 
