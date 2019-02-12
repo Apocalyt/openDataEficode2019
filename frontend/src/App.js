@@ -95,25 +95,25 @@ class App extends React.Component {
             format="%m/%d %H:%M"
             onTrackerChanged={(tracker) => this.setState({tracker})}>
             <ChartRow height="140">
-              <YAxis id="axis1" label="Sensor 1" labelOffset={-5} min={0} max={400} width="80" type="linear" format=",.1f"/>
+              <YAxis id="axis1" label="Sensor 1" labelOffset={-5} min={new TimeSeries(this.state.data1).min("value")} max= {new TimeSeries(this.state.data1).max("value")} type="linear" format=",.1f"/>
                 <Charts>
                   <LineChart style={style1} axis="axis1" series={new TimeSeries(this.state.data1)}/>
                 </Charts>
             </ChartRow>
             <ChartRow height="140">
-              <YAxis id="axis2" label="Sensor 2" labelOffset={-5} min={250} max={300} width="80" type="linear" format=",.1f"/>
+              <YAxis id="axis2" label="Sensor 2" labelOffset={-5} min={new TimeSeries(this.state.data2).min("value")} max= {new TimeSeries(this.state.data2).max("value")} width="80" type="linear" format=",.1f"/>
                 <Charts>
                   <LineChart style={style2} axis="axis2" series={new TimeSeries(this.state.data2)}/>
                 </Charts>
             </ChartRow>
             <ChartRow height="140">
-              <YAxis id="axis3" label="Sensor 3" labelOffset={-5} min={-30} max={30} width="80" type="linear" format=",.1f"/>
+              <YAxis id="axis3" label="Sensor 3" labelOffset={-5} min={new TimeSeries(this.state.data3).min("value")} max= {new TimeSeries(this.state.data3).max("value")} width="80" type="linear" format=",.1f"/>
                 <Charts>
                   <LineChart style={style3} axis="axis3" series={new TimeSeries(this.state.data3)}/>
                 </Charts>
             </ChartRow>
             <ChartRow height="140">
-              <YAxis id="axis4" label="Sensor 4" labelOffset={-5} min={40} max={120} width="80" type="linear" format=",.1f"/>
+              <YAxis id="axis4" label="Sensor 4" labelOffset={-5} min={new TimeSeries(this.state.data4).min("value")} max= {new TimeSeries(this.state.data4).max("value")} width="80" type="linear" format=",.1f"/>
                 <Charts>
                   <LineChart style={style4} axis="axis4" series={new TimeSeries(this.state.data4)}/>
                 </Charts>
